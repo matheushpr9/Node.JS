@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="C:\Users\matheus.ptasinski\Desktop\Códigos\Nodejs\Calculadora\static\style.css">
+</head>
+<body>
+    <div class="div_calc">
+        <table class="table">
+            <tr>
+                <td colspan="4"><input type="text" id="visor"></td>
+            </tr>
+            <tr>
+                <td><button>%</button></td>
+                <td><button>√</button></td>
+                <td><button>x2</button></td>
+                <td><button>1/x</button></td>
+            </tr>
+            <tr>
+                <td><button>CE</button></td>
+                <td><button>C</button></td>
+                <td><button> --</button></td>
+                <td><button>÷</button></td>
+            </tr>
+            <tr>
+                <td><button>7</button></td>
+                <td><button>8</button></td>
+                <td><button>9</button></td>
+                <td><button>×</button></td>
+            </tr>
+            <tr>
+                <td><button>4</button></td>
+                <td><button>5</button></td>
+                <td><button>6</button></td>
+                <td><button>-</button></td>
+            </tr>
+            <tr>
+                <td><button>1</button></td>
+                <td><button>2</button></td>
+                <td><button>3</button></td>
+                <td><button id="soma"> + </button></td>
+                
+            </tr>
+            <tr>
+                <td><button class="button">+-</button></td>
+                <td><button class="button">0</button></td>
+                <td><button>,</button></td>
+                <td><button id="igual">=</button></td>
+            </tr>
+        </table>
+        <script>
+            const visor = document.querySelector("#visor");
+
+            const lista_botoes = document.getElementsByClassName("button") 
+
+            function somar(){
+                visor.value = visor.value + "+"
+                console.log(lista_botoes[0].innerHTML)
+            }
+
+            function igual(){
+                string = visor.value;
+
+                string = string.replace(" ","")
+
+                console.log(string.length);
+
+                contador = 0;
+
+                ultimo_sinal =  0
+                valores = []
+                sinais = []
+
+                while(contador <= string.length){
+
+                    if(contador == string.length){
+
+                        valores.push(string.substring(ultimo_sinal , contador));
+
+                    }else if((string[contador])%1 != 0){
+
+                        valores.push(string.substring(ultimo_sinal , contador));
+
+                        sinais.push(string[contador]);
+
+                        ultimo_sinal =  contador+1
+
+                    }
+                    contador++;                    
+                }
+
+                console.log(valores)
+                console.log(sinais)
+                
+                contador_valores = 0;
+
+                contador_sinais = 0;
+
+                resultado = 0
+
+                while(contador_valores < valores.length ){
+
+                    if(contador_valores == 0){
+                    
+                        resultado = resultado + parseInt(valores[0])
+
+                        console.log(valores[contador_valores]);
+
+                        contador_valores++;
+                    }else{
+
+                        resultado = operacao(resultado,sinais[contador_sinais],parseInt(valores[contador_valores]));
+
+                        
+                        
+                        contador_sinais++;
+
+                        contador_valores++;
+                    }
+
+                }
+
+                console.log(resultado)
+                
+            }
+
+            function operacao(v1,operador,v2){
+
+                if(operador == "×" || operador == "*"){
+                    return v1 * v2;
+
+                }else if(operador == "÷" || operador =="/"){
+
+                    return v1 / v2;
+
+                }else if(operador =="-"){
+
+                    return v1 - v2;
+
+                }else if(operador == "+"){
+
+                    return v1 + v2;
+
+                }
+
+            } 
+
+            var botao = document.querySelector("#soma");
+            botao.onclick = somar;
+
+            var botao_igual = document.querySelector("#igual");
+            botao_igual.onclick = igual;
+
+        </script>
+    </div>
+</body>
+</html>

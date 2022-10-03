@@ -1,0 +1,1 @@
+SELECT * FROM usuario WHERE idade <=12;
