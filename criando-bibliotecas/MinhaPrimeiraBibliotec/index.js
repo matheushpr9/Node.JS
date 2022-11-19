@@ -1,13 +1,19 @@
 import chalk from 'chalk'; // trocar cores e texto
 
 import fs from 'fs'; // biblioteca buit-in
-import { lstat } from 'fs/promises';
+
+function trataErro(erro){
+    throw new Error(chalk.red(erro.code))
+}
 
 function pega_arquivo(caminho_arquivo){
 
     const encoding = 'UTF-8'
 
-    fs.readFile(caminho_arquivo, encoding, (_, conteudo)=>{
+    fs.readFile(caminho_arquivo, encoding, ( erro, conteudo)=>{
+       if(erro){
+        trataErro(erro)
+       }
         console.log(chalk.green(conteudo))
     })
 }
