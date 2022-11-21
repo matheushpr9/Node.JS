@@ -17,7 +17,7 @@ function extraiLinks(texto){
 
     const resultado = capturas.map(captura => ({[captura[1]]:captura[2]}))
 
-    return resultado.length !== 0 ? resultado : "Não há links no arquivo"
+    return resultado.length !== 0 ? resultado : "Não há links no arquivo'"
 
 
 }

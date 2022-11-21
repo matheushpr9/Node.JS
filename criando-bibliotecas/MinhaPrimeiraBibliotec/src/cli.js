@@ -6,10 +6,16 @@ import pega_arquivo from "./index.js";
 
 const caminho  = process.argv;
 
+import listaValidada from "./http-validacao.js"
+
 async function processaTexto(caminho){
     
 
     const path = caminho[2];
+
+    const valida = caminho[3]
+
+    console.log(valida)
 
     try{
         fs.lstatSync(caminho);
@@ -27,6 +33,9 @@ async function processaTexto(caminho){
             chalk.yellowBright('lista de Links :'),
             chalk.black.bgGreen(path),
             resultado);
+        if(valida){
+            console.log(listaValidada(resultado))
+        }
     } else if(fs.lstatSync(path).isDirectory()){
         const arquivos = await fs.promises.readdir(path)
         arquivos.forEach(async(nomeDeArquivo) => {
@@ -34,7 +43,11 @@ async function processaTexto(caminho){
             console.log("\n"+`${path}/${nomeDeArquivo}`+"\n")
             console.log(lista)
         })
+        if(valida){
+            console.log(listaValidada(lista))
+        }
     }
+    
 
     
 }
