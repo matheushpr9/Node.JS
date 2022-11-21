@@ -1,11 +1,27 @@
 import chalk from 'chalk'; // trocar cores e texto
 
 import fs from 'fs'; // biblioteca buit-in
+import { text } from 'stream/consumers';
 
 function trataErro(erro){
     console.log(erro)
-    throw new Error(chalk.red(erro.code))
+    throw new Error(chalk.red(erro.code,"deu ruim"))
 }
+
+function extraiLinks(texto){
+    const regex = /\[([^[\]]*?)\]\((https?:\/\/[^\s?#.].[^\s]*)\)/gm;
+
+    const capturas = [...texto.matchAll(regex)];
+
+    var contador = 0
+
+    const resultado = capturas.map(captura => ({[captura[1]]:captura[2]}))
+
+    return resultado
+
+
+}
+
 
 // function pega_arquivo(caminho_arquivo){
 
@@ -33,16 +49,16 @@ async function pega_arquivo(caminho_arquivo){
     try{
 
         const encoding = 'UTF-8'
-        const resultado = await fs.promises.readFile(caminho_arquivo,encoding)
-        console.log(resultado)
-    }catch{
+        const resultado = await fs.promises.readFile(caminho_arquivo,encoding);
+        console.log(extraiLinks(resultado));
+    }catch(erro){
         trataErro(erro)
     }
 }
 
 pega_arquivo('./arquivos/texto.md')
 
-console.log(chalk.blue('olá mundo'));
 
-console.log(chalk.red('olá mundo'));
-console.log('olá mundo');
+
+//\[([^[\]]*?)\]\((https?:\/\/[^\s?#.].[^\s]*)\)
+
