@@ -3,6 +3,7 @@ import chalk from 'chalk'; // trocar cores e texto
 import fs from 'fs'; // biblioteca buit-in
 
 function trataErro(erro){
+    console.log(erro)
     throw new Error(chalk.red(erro.code))
 }
 
