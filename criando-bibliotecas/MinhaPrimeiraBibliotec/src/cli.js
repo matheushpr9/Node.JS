@@ -34,18 +34,19 @@ async function processaTexto(caminho){
             chalk.black.bgGreen(path),
             resultado);
         if(valida){
-            console.log(listaValidada(resultado))
+            console.log(await listaValidada(resultado))
         }
     } else if(fs.lstatSync(path).isDirectory()){
         const arquivos = await fs.promises.readdir(path)
         arquivos.forEach(async(nomeDeArquivo) => {
-            const lista = await pega_arquivo(`${path}/${nomeDeArquivo}`);
+            var lista = await pega_arquivo(`${path}/${nomeDeArquivo}`);
             console.log("\n"+`${path}/${nomeDeArquivo}`+"\n")
             console.log(lista)
+            if(valida){
+                console.log( await listaValidada(lista))
+            }
         })
-        if(valida){
-            console.log(listaValidada(lista))
-        }
+        
     }
     
 
