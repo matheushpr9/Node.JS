@@ -13,7 +13,7 @@ async function processaTexto(caminho){
 
     const path = caminho[2];
 
-    const valida = caminho[3]
+    const valida = caminho[3] === '--valida';
 
     console.log(valida)
 
@@ -55,3 +55,5 @@ async function processaTexto(caminho){
 processaTexto(caminho)
 
 //node src/cli.js ./arquivos/texto.md
+
+//node src/cli.js ./arquivos/texto.md --valida
