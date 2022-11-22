@@ -26,7 +26,12 @@ async function checaStatus(arrDeURLs){
 }
 
 function manejaErros(erro){
-    console.log(chalk.ref("Algo deu errado"), erro)
+    if(erro.cause.code === 'ENOTFOUND'){
+        return 'Link Não encontrado'
+    }else{
+        return "Algo deu errado"
+    }
+  
 }
 
 async function listaValidada(listaDeLinks){
