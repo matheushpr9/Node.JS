@@ -1,19 +1,17 @@
 import express  from "express";
+import db from './config/dbConnect.js'
+import routes from './routes/index.js'
+
+db.on("error", console.log.bind(console, "Erro  de conexão"))
+db.once("open",() => {
+    console.log("conexão com o banco feita com sucesso")
+})
 
 const app = express()
 
-const livros = [
-    {id:1, "titulo":"Senhos dos aneis"},
-    {id:2, "titulo": "O Hobbit"}
-]
+app.use(express.json());
 
-app.get('/', (req,res) =>{
-    res.status(200).send("API em Node")
-})
+routes(app);
 
-app.get('/livros', (req, res)=>{
-    res.status(200).json(livros)
 
-})
-
-export default app
+export default app 
