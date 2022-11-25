@@ -68,7 +68,7 @@ class LivroController{
                 res.status(200).send(livros)
             }
         })
-    }
+    }//http://localhost:3000/livros/busca?editora=WMF Martins Fontes
 
 }
 
