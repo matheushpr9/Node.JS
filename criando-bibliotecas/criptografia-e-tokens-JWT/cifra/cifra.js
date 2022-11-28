@@ -10,7 +10,7 @@ function cifraMensagem(mensagem, movimentos){
     return mensagemCifrada.join('')
 }
 
-mensagemCifrada = cifraMensagem(mensagemSecreta,3)
+const mensagemCifrada = cifraMensagem(mensagemSecreta,3)
 
 console.log(mensagemCifrada)
 
@@ -22,6 +22,6 @@ function decifraMensagem(mensagem, movimentos){
     return mensagemCifrada.join('')
 }
 
-mensagemDecifrada = decifraMensagem(mensagemCifrada,3)
+const mensagemDecifrada = decifraMensagem(mensagemCifrada,3)
 
 console.log(mensagemDecifrada)
